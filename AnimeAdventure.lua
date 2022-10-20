@@ -44,8 +44,8 @@ local function webhook()
 
 		local data = {
 			["content"] = "",
-			["username"] = "Nô lệ của Sheen",
-			["avatar_url"] = "https://i.pinimg.com/736x/51/09/52/510952f57e8ea27238e81abcf4c883f8.jpg",
+			["username"] = "Hai ba con vịt, yêu em để ...",
+			["avatar_url"] = "https://scontent.fhan5-11.fna.fbcdn.net/v/t39.30808-6/311294827_182591157662915_8487211893473820004_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=dbeb18&_nc_ohc=TjkpB2gnLCQAX8jxlNp&_nc_ht=scontent.fhan5-11.fna&oh=00_AT_zNhA4JkaW1RirP09sJqzi0hkHtEHOLatEWMjduJQGkA&oe=6355B551",
 			["embeds"] = {
 				{
 					["author"] = {
@@ -71,19 +71,19 @@ local function webhook()
 							["inline"] = true
 						}, {
                             ["name"] = "XP nhận được:",
-                            ["value"] = XP .. " 🧪",
+                            ["value"] = XP .. "",
                             ["inline"] = true
                         }, {
                             ["name"] = " Tổng thời gian đã vượt ải:",
-                            ["value"] = tostring(ttime[2]) .. " ⏳",
+                            ["value"] = tostring(ttime[2]) .. "",
                             ["inline"] = true
                         }, {
                             ["name"] = "Gem hiện đang có :",
-                            ["value"] = tostring(game.Players.LocalPlayer._stats.gem_amount.Value).." <:gem:997123585476927558>",
+                            ["value"] = tostring(game.Players.LocalPlayer._stats.gem_amount.Value).."Gems ",
                             ["inline"] = true
                         }, {
                             ["name"] = "Level hiện tại :",
-                            ["value"] = tostring(game.Players.LocalPlayer.PlayerGui.spawn_units.Lives.Main.Desc.Level.Text).. " ✨",
+                            ["value"] = tostring(game.Players.LocalPlayer.PlayerGui.spawn_units.Lives.Main.Desc.Level.Text).. " ",
                             ["inline"] = true
                         }, {
                             ["name"] = "Nếu boot này không còn thông báo sau khoảng 30p. Xin vui lòng thông báo và liên hệ cho tôi :",
