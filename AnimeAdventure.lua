@@ -63,11 +63,11 @@ local function webhook()
 						{
 							["name"] = "Đã vượt qua màn :",
 							["value"] = tostring(waves[2]) ..
-								" <:wave:997136622363627530>",
+								"",
 							["inline"] = true
 						}, {
 							["name"] = "Gem nhận được:",
-							["value"] = gems .. " <:gem:997123585476927558>",
+							["value"] = gems .. " ",
 							["inline"] = true
 						}, {
                             ["name"] = "XP nhận được:",
@@ -79,7 +79,7 @@ local function webhook()
                             ["inline"] = true
                         }, {
                             ["name"] = "Gem hiện đang có :",
-                            ["value"] = tostring(game.Players.LocalPlayer._stats.gem_amount.Value).."Gems ",
+                            ["value"] = tostring(game.Players.LocalPlayer._stats.gem_amount.Value).." Gems ",
                             ["inline"] = true
                         }, {
                             ["name"] = "Level hiện tại :",
