@@ -324,7 +324,7 @@ function sex()
                 task.wait()
 
                 local args = {
-                    [1] = "_lobbytemplategreen10"
+                    [1] = "_lobbytemplategreen9"
                 }
                 game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer(unpack(
                     args))
@@ -333,7 +333,7 @@ function sex()
 
                 if getgenv().level:match("infinite") then
                     local args = {
-                        [1] = "_lobbytemplategreen10"
+                        [1] = "_lobbytemplategreen9"
                         [2] = getgenv().level, -- World
                         [3] = true, -- Friends Only or not
                         [4] = "Hard"
@@ -341,7 +341,7 @@ function sex()
                     game:GetService("ReplicatedStorage").endpoints.client_to_server.request_lock_level:InvokeServer(unpack(args))
                 else
                     local args = {
-                        [1] = "_lobbytemplategreen10" 
+                        [1] = "_lobbytemplategreen9" 
                         [2] = getgenv().level, -- World
                         [3] = true, -- Friends Only or not
                         [4] = getgenv().difficulty
@@ -353,7 +353,7 @@ function sex()
                 task.wait(45)
 
                 local args = {
-                    [1] = "_lobbytemplategreen10"
+                    [1] = "_lobbytemplategreen9"
                 }
                 game:GetService("ReplicatedStorage").endpoints.client_to_server.request_start_game:InvokeServer(unpack(args))
             end
@@ -1933,7 +1933,7 @@ coroutine.resume(coroutine.create(function()
                 task.wait()
 
                 local args = {
-                    [1] = "_lobbytemplategreen10"
+                    [1] = "_lobbytemplategreen9"
                 }
                 game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer(unpack(args))
 
@@ -1941,7 +1941,7 @@ coroutine.resume(coroutine.create(function()
 
                 if getgenv().level:match("infinite") then
                     local args = {
-                        [1] = "_lobbytemplategreen10" 
+                        [1] = "_lobbytemplategreen9" 
                         [2] = getgenv().level, -- World
                         [3] = true, -- Friends Only or not
                         [4] = "Hard"
@@ -1949,7 +1949,7 @@ coroutine.resume(coroutine.create(function()
                     game:GetService("ReplicatedStorage").endpoints.client_to_server.request_lock_level:InvokeServer(unpack(args))
                 else
                     local args = {
-                        [1] = "_lobbytemplategreen10" 
+                        [1] = "_lobbytemplategreen9" 
                         [2] = getgenv().level, -- World
                         [3] = true, -- Friends Only or not
                         [4] = getgenv().difficulty
@@ -1960,7 +1960,7 @@ coroutine.resume(coroutine.create(function()
                 task.wait(45)
 
                 local args = {
-                    [1] = "_lobbytemplategreen10"
+                    [1] = "_lobbytemplategreen9"
                 }
                 game:GetService("ReplicatedStorage").endpoints.client_to_server.request_start_game:InvokeServer(unpack(args))
                 task.wait()
