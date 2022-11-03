@@ -1,3 +1,7 @@
+-- v1.5.2 --
+-- + Now you can select currently equipped units
+-- + Fixed Webhook 
+
 -- v1.5.1 --
 -- + Added Thriller Park
 
@@ -39,8 +43,8 @@ local function webhook()
 			return
 		end 
 			
-    		XP = tostring(game:GetService("Players").LocalPlayer.PlayerGui.ResultsUI.Holder.GoldGemXP.XPReward.Main.Amount.Text)
-		gems = tostring(game:GetService("Players").LocalPlayer.PlayerGui.ResultsUI.Holder.GoldGemXP.GemReward.Main.Amount.Text)
+    	XP = tostring(game:GetService("Players").LocalPlayer.PlayerGui.ResultsUI.Holder.LevelRewards.ScrollingFrame.XPReward.Main.Amount.Text)
+		gems = tostring(game:GetService("Players").LocalPlayer.PlayerGui.ResultsUI.Holder.LevelRewards.ScrollingFrame.GemReward.Main.Amount.Text)
 		cwaves = game:GetService("Players").LocalPlayer.PlayerGui.ResultsUI.Holder.Middle.WavesCompleted.Text
 		ctime = game:GetService("Players").LocalPlayer.PlayerGui.ResultsUI.Holder.Middle.Timer.Text
 		waves = cwaves:split(": ")
@@ -176,7 +180,7 @@ function sex()
     -- Uilib Shits
 
     local DiscordLib = loadstring(game:HttpGet "https://raw.githubusercontent.com/Forever4D/Lib/main/DiscordLib2.lua")()
-    local win = DiscordLib:Window("[👻] Anime Adventures 1.5.1".." - "..tostring(identifyexecutor()))
+    local win = DiscordLib:Window("[👻] Anime Adventures 1.5.2".." - "..tostring(identifyexecutor()))
     local serv = win:Server("Anime Adventures", "http://www.roblox.com/asset/?id=6031075938")
             
     if game.PlaceId == 8304191830 then
@@ -202,8 +206,26 @@ function sex()
 
         loadUnit()
 
+        	
+        local function Check(x, y)
+            for i, v in ipairs(game:GetService("Players").LocalPlayer.PlayerGui.collection.grid.List.Outer.UnitFrames:GetChildren()) do
+                if v:IsA("ImageButton") then
+                    if v.Equipped.Visible == true then
+                        if v.Main.petimage:GetChildren()[2].Name == x then
+                            --print(v.name.Text.." #"..v._uuid.Value)
+                            getgenv().SelectedUnits["U"..tostring(y)] = tostring(v.name.Text.." #"..v._uuid.Value)
+                            updatejson()
+                            return true
+                        end
+                    end
+                end
+            end
+        end
+
+
         local function Equip()
             game:GetService("ReplicatedStorage").endpoints.client_to_server.unequip_all:InvokeServer()
+            
             for i = 1, 6 do
                 local unitinfo = getgenv().SelectedUnits["U" .. i]
                 warn(unitinfo)
@@ -215,6 +237,21 @@ function sex()
             end
             updatejson()
         end
+
+        unitselecttab:Button("Select Equipped Units", function()
+            for i, v in ipairs(game:GetService("Players").LocalPlayer.PlayerGui["spawn_units"].Lives.Frame.Units:GetChildren()) do
+                if v:IsA("ImageButton") then
+                    local unitxx = v.Main.petimage.WorldModel:GetChildren()[1]
+                    if unitxx ~= nil then
+                        if Check(unitxx.Name,v) then
+                            print(unitxx, v)
+                        end
+                    end
+                end
+            end
+            DiscordLib:Notification("Equipped Units Are Selected!", "The dropdowns may not show the unit names now, but it will show next time, Dont worry!", "Okay!")
+
+        end)
 
         local drop = unitselecttab:Dropdown("Unit 1", Units, getgenv().SelectedUnits["U1"], function(bool)
             getgenv().SelectedUnits["U1"] = bool
@@ -321,10 +358,17 @@ function sex()
 
             if getgenv().autostart and getgenv().AutoFarm then
 
+                for i, v in pairs(game:GetService("Workspace")["_LOBBIES"].Story:GetDescendants()) do
+                    if v.Name == "Owner" and v.Value == nil then
+                        getgenv().door = v.Parent.Name
+                        break
+                    end
+                end
+
                 task.wait()
 
                 local args = {
-                    [1] = "_lobbytemplategreen9"
+                    [1] = getgenv().door
                 }
                 game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer(unpack(
                     args))
@@ -333,7 +377,7 @@ function sex()
 
                 if getgenv().level:match("infinite") then
                     local args = {
-                        [1] = "_lobbytemplategreen9",
+                        [1] = getgenv().door, -- Lobby 
                         [2] = getgenv().level, -- World
                         [3] = true, -- Friends Only or not
                         [4] = "Hard"
@@ -341,7 +385,7 @@ function sex()
                     game:GetService("ReplicatedStorage").endpoints.client_to_server.request_lock_level:InvokeServer(unpack(args))
                 else
                     local args = {
-                        [1] = "_lobbytemplategreen9",
+                        [1] = getgenv().door, -- Lobby 
                         [2] = getgenv().level, -- World
                         [3] = true, -- Friends Only or not
                         [4] = getgenv().difficulty
@@ -350,10 +394,10 @@ function sex()
                 end
 
 
-                task.wait(45)
+                task.wait()
 
                 local args = {
-                    [1] = "_lobbytemplategreen9"
+                    [1] = getgenv().door
                 }
                 game:GetService("ReplicatedStorage").endpoints.client_to_server.request_start_game:InvokeServer(unpack(args))
             end
@@ -1929,11 +1973,18 @@ coroutine.resume(coroutine.create(function()
     while task.wait() do
         if getgenv().autostart and getgenv().AutoFarm and getgenv().teleporting then
             if game.PlaceId == 8304191830 then
+                for i, v in pairs(game:GetService("Workspace")["_LOBBIES"].Story:GetDescendants()) do
+                    if v.Name == "Owner" and v.Value == nil then
+                        getgenv().door = v.Parent.Name
+                        getgenv().lobbypath = v.Parent:GetFullName() print(v.Parent:GetFullName())
+                        break
+                    end
+                end
 
                 task.wait()
 
                 local args = {
-                    [1] = "_lobbytemplategreen9"
+                    [1] = getgenv().door
                 }
                 game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer(unpack(args))
 
@@ -1941,7 +1992,7 @@ coroutine.resume(coroutine.create(function()
 
                 if getgenv().level:match("infinite") then
                     local args = {
-                        [1] = "_lobbytemplategreen9",
+                        [1] = getgenv().door, -- Lobby 
                         [2] = getgenv().level, -- World
                         [3] = true, -- Friends Only or not
                         [4] = "Hard"
@@ -1949,7 +2000,7 @@ coroutine.resume(coroutine.create(function()
                     game:GetService("ReplicatedStorage").endpoints.client_to_server.request_lock_level:InvokeServer(unpack(args))
                 else
                     local args = {
-                        [1] = "_lobbytemplategreen9",
+                        [1] = getgenv().door, -- Lobby 
                         [2] = getgenv().level, -- World
                         [3] = true, -- Friends Only or not
                         [4] = getgenv().difficulty
@@ -1957,13 +2008,27 @@ coroutine.resume(coroutine.create(function()
                     game:GetService("ReplicatedStorage").endpoints.client_to_server.request_lock_level:InvokeServer(unpack(args))
                 end
 
-                task.wait(45)
+                task.wait()
 
                 local args = {
-                    [1] = "_lobbytemplategreen9"
+                    [1] = getgenv().door
                 }
                 game:GetService("ReplicatedStorage").endpoints.client_to_server.request_start_game:InvokeServer(unpack(args))
                 task.wait()
+
+                for i, v in pairs(game:GetService("Workspace")["_LOBBIES"].Story:GetDescendants()) do
+                    if v.Name == "Owner" then
+                       local n = tostring(v.Value)
+                        if n == game:GetService("Players").LocalPlayer.Name then
+                            print(v.Parent.Teleporting.Value)
+                            if v.Parent.Teleporting.Value == true then
+                                getgenv().teleporting = false
+                            else
+                                getgenv().teleporting = true
+                            end
+                        end
+                    end
+                end  
 
             end
         end
