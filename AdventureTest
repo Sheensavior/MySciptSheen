@@ -1,3 +1,9 @@
+-- v1.5.6.5--
+-- + Added Join Job ID 
+
+-- v1.5.6 --
+-- +Fixed not executing
+
 -- v1.5.5 --
 -- + Added Clover Legend
 -- + Fixed Auto Ability breaking randomly
@@ -28,8 +34,27 @@ local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
 local mouse = game.Players.LocalPlayer:GetMouse()
 local UserInputService = game:GetService("UserInputService")
+local NameLeader = game.Players.LocalPlayer.Name
+local JobID = game.JobId
+local Players = game:GetService("Players")
+local CoreGui = game:GetService("CoreGui")
+local GuiService = game:GetService("StarterGui")
+local TeleService = game:GetService("TeleportService")
+local Player1 = "SheenAdventure1"
+local Player2 = "SheenAdventure2"
+local Player3 = "SheenAdventure3"
+local nameleader = "AllaySheen"
+
 
 getgenv().savefilename = "Anime-Adventures-UPD7"..game.Players.LocalPlayer.Name..".json"
+getgenv().savejobid = "Anime-Adventures-JobID.json"
+        ----------// Loading Player \\ ----
+local playerslist = {}
+local function LoadingPlayer()
+    for _,v in pairs(game.Players:GetPlayers()) do 
+        table.insert(playerslist, v.Name)
+    end
+end
 
 --Webhook sender
 local function webhook()
@@ -125,10 +150,10 @@ function sex()
 
     -- global values
     getgenv().disableatuofarm = false
-
     getgenv().sellatwave = data.sellatwave 
     getgenv().autosell = data.autosell
     getgenv().AutoFarm = data.autofarm
+    getgenv().AutoFarmLP = data.autofarmlp
     getgenv().AutoFarmIC = data.autofarmic
     getgenv().AutoFarmTP = data.autofarmtp
     getgenv().AutoLoadTP = data.autoloadtp
@@ -139,6 +164,8 @@ function sex()
     getgenv().world = data.world
     getgenv().level = data.level
     getgenv().door = data.door
+    getgenv().leader = data.leader
+    getgenv().pursuer = data.pursuer
 
     getgenv().SpawnUnitPos = data.xspawnUnitPos
     getgenv().SelectedUnits = data.xselectedUnits
@@ -154,6 +181,7 @@ function sex()
             autosell = getgenv().autosell,
             webhook = getgenv().weburl,
             autofarm = getgenv().AutoFarm,
+            autofarmlp = getgenv().AutoFarmLP,
             autofarmic = getgenv().AutoFarmIC,
             autofarmtp = getgenv().AutoFarmTP,
             autoloadtp = getgenv().AutoLoadTP,
@@ -163,6 +191,8 @@ function sex()
             world = getgenv().world,
             level = getgenv().level,
             door = getgenv().door,
+            leader = getgenv().leader,
+            pursuer = getgenv().pursuer,
 
             xspawnUnitPos = getgenv().SpawnUnitPos,
             xselectedUnits = getgenv().SelectedUnits,
@@ -173,13 +203,33 @@ function sex()
         writefile(savefilename, json)
 
     end
+-- read jsonJobID
+
+    local jsonJobID = readfile(savejobid)
+    local datajobid = HttpService:JSONDecode(jsonJobID)
+
+    getgenv().takejobid = datajobid.takejobid
+    getgenv().nameleader = datajobid.nameleader
+    getgenv().rouding = datajobid.rouding
+
+---// updates the json Job ID file
+    function updatejsonjobID()
+        local jobdata = {
+            takejobid = getgenv().takejobid,
+            nameleader = getgenv().nameleader,
+            rouding = getgenv().rouding
+        }
+        local jsonid = HttpService:JSONEncode(jobdata)
+        writefile(savejobid, jsonid)
+        
+    end
     
     --------------------------------------------------
     --------------------------------------------------
     -- Uilib Shits
 
-    local DiscordLib = loadstring(game:HttpGet "https://raw.githubusercontent.com/Sheensavior/MySciptSheen/main/BostDiscord")()
-    local win = DiscordLib:Window("[😈UPD 7] Anime Adventures 1.5.5".." - "..tostring(identifyexecutor()))
+    local DiscordLib = loadstring(game:HttpGet "https://raw.githubusercontent.com/Forever4D/Lib/main/DiscordLib2.lua")()
+    local win = DiscordLib:Window("[😈UPD 7] Anime Adventures 1.5.6".." - "..tostring(identifyexecutor()))
     local serv = win:Server("Anime Adventures", "http://www.roblox.com/asset/?id=6031075938")
             
     if game.PlaceId == 8304191830 then
@@ -204,8 +254,6 @@ function sex()
                 end
             end
         end
-
-        loadUnit()
 
         	
         local function Check(x, y)
@@ -527,7 +575,6 @@ function sex()
                 for i, v in ipairs(levels) do
                     getgenv().leveldrop:Add(v)
                 end
-            end
         elseif world == "Clover Legend" then
                 getgenv().leveldrop:Clear()
                 table.clear(levels)
@@ -542,7 +589,39 @@ function sex()
             getgenv().level = level
             updatejson()
         end)
+        autofarmtab:Toggle("Auto Farm with Leader and Pursuer", getgenv().AutoFarmLP, function(bool)
+            getgenv().AutoFarmLP = bool
+            updatejson()
+        end)
 
+        local autojobID = serv:Channel("Join Job ID")
+        autojobID:Label("Nothing Demo")
+        autojobID:Label("Job ID: " ..tostring(getgenv().takejobid))
+
+        autojobID:Label("Name Leader's: "..tostring(getgenv().nameleader))	
+
+        autojobID:Toggle("Leader", getgenv().leader,function(bool)
+            getgenv().leader = bool
+            updatejson()
+            if getgenv().leader then
+                getgenv().takejobid = JobID
+                updatejsonjobID()
+            end
+        end)
+
+        autojobID:Toggle("Pursuer", getgenv().pursuer,function(bool)
+            getgenv().pursuer = bool
+            updatejson()
+
+            if getgenv().pursuer then
+                task.wait(40)
+                    if game.PlaceId == 8304191830 then
+                    if game.JobId ~= getgenv().takejobid then
+                            TeleService:TeleportToPlaceInstance(game.PlaceId,getgenv().takejobid,Players.LocalPlayer)
+                    end        
+                end
+            end
+        end)
 
         
         local autoloadtab = serv:Channel("Auto Load Script")
@@ -572,6 +651,7 @@ function sex()
 
         autofarmtab:Label(" ")
         autofarmtab:Label(" ")
+
 
     else -- When in a match
 
@@ -912,8 +992,11 @@ else
         webhook = "",
         sellatwave = 0,
         autosell = false,
+        autofarmlp = fasle,
         autofarm = false,
         autofarmic = false,
+        leader = false,
+        pursuer = false,
         autostart = false,
         autoupgrade = false,
         difficulty = "Normal",
@@ -1323,6 +1406,20 @@ else
     writefile(savefilename, json)
 
     sex()
+end
+if isfile(savejobid) then 
+
+    local jsonJobID = readfile(savejobid)
+    local dataJob = HttpService:JSONDecode(jsonJobID)
+
+else
+    local jobdata = {
+        takejobid = 0,
+        nameleader = 0,
+        rouding = 0
+    }
+    local jsonid = HttpService:JSONEncode(jobdata)
+    writefile(savejobid, jsonid)
 end
 --------------------------------------------------
 
@@ -1962,15 +2059,47 @@ coroutine.resume(coroutine.create(function()
 	local GameFinished = game:GetService("Workspace"):WaitForChild("_DATA"):WaitForChild("GameFinished")
 	GameFinished:GetPropertyChangedSignal("Value"):Connect(function()
 	print("Changed", GameFinished.Value == true)
+    if getgenv().pursuer then
 	if GameFinished.Value == true then
         repeat task.wait() until  game:GetService("Players").LocalPlayer.PlayerGui.ResultsUI.Enabled == true
         task.wait()
 		pcall(function() webhook() end)
 		print("next")
-		task.wait(2)
+		task.wait(6)
 		game:GetService("TeleportService"):Teleport(8304191830, game.Players.LocalPlayer)
 	end
+    else
+        if GameFinished.Value == true then
+            repeat task.wait() until  game:GetService("Players").LocalPlayer.PlayerGui.ResultsUI.Enabled == true
+            task.wait()
+            pcall(function() webhook() end)
+            print("next")
+            task.wait(2)
+            game:GetService("TeleportService"):Teleport(8304191830, game.Players.LocalPlayer)
+        end
+    end
+
 	end)
+end))
+-----------// Auto Leave if don't find leader or pursuer \\------
+coroutine.resume(coroutine.create(function()
+    while true do
+        task.wait()
+        LoadingPlayer()
+        if game.PlaceId ~= 8304191830 then
+            if getgenv().leader then
+                if not table.find(playerslist,Player1) and table.find(playerslist,Player2) and table.find(playerslist,Player3) then
+                    game:GetService("TeleportService"):Teleport(8304191830, game.Players.LocalPlayer)
+                end
+            elseif getgenv().pursuer then
+                if not table.find(playerslist,getgenv().nameleader) then
+                    game:GetService("TeleportService"):Teleport(8304191830, game.Players.LocalPlayer)
+                end
+            end
+
+        end
+        task.wait(60)
+    end 
 end))
 
 
@@ -2186,6 +2315,128 @@ coroutine.resume(coroutine.create(function()
         end
     end
 end))
+
+-----// Update Rouding \\-------
+coroutine.resume(coroutine.create(function()
+    while true do
+        task.wait(2)
+        if game.PlaceId == 8304191830 then
+            local CFramX = workspace[getgenv().nameleader].HumanoidRootPart.Position.X
+            local valuE = tonumber(CFramX)
+            local rouding = math.floor(valuE)
+            getgenv().rouding = rouding
+            updatejsonjobID()
+        end
+    end
+end))
+-----// Update Joib ID \\-------
+coroutine.resume(coroutine.create(function()
+    while true do
+        task.wait(2)
+        if game.PlaceId == 8304191830 then
+            if getgenv().leader then
+                local JobID = game.JobId
+                getgenv().takejobid = JobID
+                updatejsonjobID()
+            end
+        end
+    end
+end))
+
+-----// AutoJoin Join job ID pursuer \\----
+coroutine.resume(coroutine.create(function()
+    while true do
+        task.wait(2)
+        if getgenv().pursuer then
+            if game.PlaceId == 8304191830 then
+                task.wait()
+                if game.JobId ~= getgenv().takejobid then
+                    TeleService:TeleportToPlaceInstance(game.PlaceId,getgenv().takejobid,Players.LocalPlayer)
+                    task.wait(13)
+                end
+            end
+        end  
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while true do
+        task.wait(2)
+        LoadingPlayer()
+        if getgenv().pursuer then
+            if not table.find(playerslist,getgenv().nameleader) then
+                TeleService:TeleportToPlaceInstance(game.PlaceId,getgenv().takejobid,Players.LocalPlayer)
+                task.wait(13)
+            end
+        end
+    end
+end))
+
+------// Auto Farm Leader and Pursuer \\------
+
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().AutoFarmLP then
+            if game.PlaceId == 8304191830 then
+                repeat task.wait(3) LoadingPlayer() until table.find(playerslist,Player1) and table.find(playerslist,Player2) and table.find(playerslist,Player3)
+                if getgenv().leader then
+                    task.wait(120)
+    
+                    local args = {
+                        [1] = "_lobbytemplategreen10"
+                    }
+                    game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer(unpack(args))
+    
+                    task.wait()
+    
+                    if getgenv().level:match("infinite") then
+                        local args = {
+                            [1] = "_lobbytemplategreen10", -- Lobby 
+                            [2] = getgenv().level, -- World
+                            [3] = true, -- Friends Only or not
+                            [4] = "Hard"
+                        }
+                        game:GetService("ReplicatedStorage").endpoints.client_to_server.request_lock_level:InvokeServer(unpack(args))
+                    else
+                        local args = {
+                            [1] = "_lobbytemplategreen10", -- Lobby 
+                            [2] = getgenv().level, -- World
+                            [3] = true, -- Friends Only or not
+                            [4] = getgenv().difficulty
+                        }
+                        game:GetService("ReplicatedStorage").endpoints.client_to_server.request_lock_level:InvokeServer(unpack(args))
+                    end
+    
+                    task.wait(50)
+    
+                    local args = {
+                        [1] = "_lobbytemplategreen10"
+                    }
+                    game:GetService("ReplicatedStorage").endpoints.client_to_server.request_start_game:InvokeServer(unpack(args))
+                    task.wait()
+---------------// Pursuer \\---------------------              
+                else
+                    if  rouding == -88 or rouding == -89 or rouding == -90 or rouding == -91 then
+                        repeat task.wait(3) LoadingPlayer() until table.find(playerslist,getgenv().nameleader)
+                            task.wait(2)
+                            local args = {
+                                [1] = "_lobbytemplategreen10"
+                            }
+                            game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer(unpack(args))
+                            task.wait(2)
+                            local args = {
+                                [1] = "_lobbytemplategreen10"
+                            }
+                            game:GetService("ReplicatedStorage").endpoints.client_to_server.request_start_game:InvokeServer(unpack(args))
+                            task.wait(120)
+
+                    end
+                end
+
+            end
+        end
+    end
+end))
+
 
 
 
