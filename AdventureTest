@@ -759,6 +759,12 @@ function sex()
             getgenv().AutoLeave = bool
             updatejson()
         end)
+
+	autofarmtab:Toggle("Auto Return", getgenv().AutoReturn, function(bool)
+            getgenv().AutoReturn = bool
+            updatejson()
+        end)
+
         autofarmtab:Toggle("Auto Start Thriller Park", getgenv().AutoFarmTP, function(bool)
             getgenv().AutoFarmTP = bool
             updatejson()
