@@ -1,0 +1,74 @@
+local HttpService = game:GetService("HttpService")
+local RunService = game:GetService("RunService")
+local mouse = game.Players.LocalPlayer:GetMouse()
+local UserInputService = game:GetService("UserInputService")
+
+local Workspace = game:GetService("Workspace")
+local name = game.Players.LocalPlayer.Name
+local a = "场景"
+local b = "交易大厅"
+local c = "摊位"
+local d = "基础摊子"
+local e = "招牌"
+local f = "宝宝位置"
+local n = 1
+
+--Webhook sender
+local function webhook()
+	pcall(function()
+		local url = "https://discord.com/api/webhooks/1113101805275070657/2WXgsZ_CESPOMFcJWGHoSq2hzjelstJ_-iUptwRGJoCpVhpAWPoBFDP_4mWVppvnmLiu" --webhook
+		local data = {
+			["content"] = "",
+			["username"] = "Anime Catching Simulator",
+			["avatar_url"] = "https://tr.rbxcdn.com/1c6844a6400f207096651c0bef5a23e8/768/432/Image/Png",
+			["embeds"] = {
+				{
+					["author"] = {
+						["name"] = " Mau add thêm hero đi kìa ",
+						["icon_url"] = ""
+					},
+					["description"] = tostring(name),
+					["color"] = 110335,
+
+					["thumbnail"] = {
+						['url'] = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. game.Players.LocalPlayer.userId .. "&width=420&height=420&format=png"
+					},
+
+					["fields"] = {
+						{
+							["name"] = "",
+							["value"] = "",
+							["inline"] = true
+						}
+					}
+				}
+			}
+		}
+
+		local porn = game:GetService("HttpService"):JSONEncode(data)
+
+		local headers = {["content-type"] = "application/json"}
+		request = http_request or request or HttpPost or syn.request or http.request
+		local sex = {Url = url, Body = porn, Method = "POST", Headers = headers}
+		warn("Sending webhook notification...")
+		request(sex)
+	end)
+end
+while ( n < 26 ) do
+		main = Workspace[a][b][c][n][d][e][e].Board.SurfaceGui.TextLabel.Text
+		local m = 1
+	if main == name then
+		
+		while ( m < 7 ) do
+			if not Workspace[a][b][c][n][d][f][m]:FindFirstChild("宠物") then
+				webhook()
+			end
+			m = m + 1
+			task.wait(2)
+		end
+	
+	else
+		n = n + 1
+	end
+	task.wait(1)
+end
