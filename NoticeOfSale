@@ -12,6 +12,7 @@ local d = "基础摊子"
 local e = "招牌"
 local f = "宝宝位置"
 local n = 1
+local m = 1
 
 --Webhook sender
 local function webhook()
@@ -56,7 +57,6 @@ local function webhook()
 end
 while ( n < 26 ) do
 		main = Workspace[a][b][c][n][d][e][e].Board.SurfaceGui.TextLabel.Text
-		local m = 1
 	if main == name then
 		
 		while ( m < 7 ) do
