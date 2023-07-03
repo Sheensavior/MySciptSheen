@@ -79,8 +79,8 @@ end
 ------// Auto Sell Summer Cat \\------
 coroutine.resume(coroutine.create(function()
     while (Arm > 0) do
-        task.wait(1)
-        if getgenv().SummerCat then
+        task.wait(2)
+        if getgenv().SummerCat and not getgenv().Leviathan and not getgenv().KingOctopus then
             for i, v in pairs(FindPet:GetChildren()) do
                 if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
                    PetName = v.Toggle.Stat.Text
@@ -93,21 +93,41 @@ coroutine.resume(coroutine.create(function()
                     end 
                 task.wait()
                 end
-            end      
-        end
-    end
-end))
-------// Auto Sell Leviathan \\------
-coroutine.resume(coroutine.create(function()
-    while (Arm > 0) do
-        task.wait(1)
-        if getgenv().Leviathan then
+            end 
+        elseif getgenv().SummerCat and getgenv().Leviathan and not getgenv().KingOctopus then     
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Summer Cat" or PetName == "Leviathan" then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end
+        elseif getgenv().SummerCat and not getgenv().Leviathan and getgenv().KingOctopus then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Summer Cat" or PetName == "King Octopus" then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end
+        elseif not getgenv().SummerCat and getgenv().Leviathan and not getgenv().KingOctopus then
             for i, v in pairs(FindPet:GetChildren()) do
                 if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
                    PetName = v.Toggle.Stat.Text
                    PetCode = v.Name
                     if PetName == "Leviathan" then
-                    	
                         local args = {
                             [1] = PetCode
                                      }
@@ -115,20 +135,13 @@ coroutine.resume(coroutine.create(function()
                     end 
                 task.wait()
                 end
-            end      
-        end
-    end
-end))
-------// Auto Sell King Octopus \\------
-coroutine.resume(coroutine.create(function()
-    while (Arm > 0) do
-        task.wait(1)
-        if getgenv().KingOctopus then
+            end
+        elseif not getgenv().SummerCat and getgenv().Leviathan and getgenv().KingOctopus then
             for i, v in pairs(FindPet:GetChildren()) do
                 if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
                    PetName = v.Toggle.Stat.Text
                    PetCode = v.Name
-                    if PetName == "King Octopus" then
+                    if PetName == "Leviathan" or PetName == "King Octopus"then
                         local args = {
                             [1] = PetCode
                                      }
@@ -136,10 +149,25 @@ coroutine.resume(coroutine.create(function()
                     end 
                 task.wait()
                 end
-            end      
+            end
+        elseif not getgenv().SummerCat and not getgenv().Leviathan and getgenv().KingOctopus then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "King Octopus"then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end
         end
     end
 end))
+
 --anti afk
 pcall(function()
     local vu = game:GetService("VirtualUser")
