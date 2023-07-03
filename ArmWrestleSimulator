@@ -51,7 +51,7 @@ function sex()
         end)
 
     local autocraft = serv:Channel("Auto Craft")
-    autocraft:Label("Don't use Auto Start with Infinity Castle! or Thriller Park")
+    autocraft:Label("Lười chưa viết")
 end
 
 ---// Checks if file exist or not\\---
