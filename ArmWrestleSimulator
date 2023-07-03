@@ -34,7 +34,7 @@ function sex()
     local serv = win:Server("Arm Wrestle Simulator", "http://www.roblox.com/asset/?id=6031075938")
     local autosellpet = serv:Channel("Auto Sell Pet Event")
         
-        autosellpet:Label("Xóa toàn bộ pet mà bạn muốn khi bật lên và sẽ tự động xóa khi bạn mở trứng")
+        autosellpet:Label("Tạo Bởi Vĩnh Phát đẹp trai :V ")
         autosellpet:Toggle("Summer Cat", getgenv().SummerCat, function(bool)
             getgenv().SummerCat = bool
             updatejson()
