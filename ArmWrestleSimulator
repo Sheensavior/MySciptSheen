@@ -1,0 +1,137 @@
+local HttpService = game:GetService("HttpService")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local FindPet = game.Players.LocalPlayer.PlayerGui.GameUI.Menus.PetInventory.Container.ScrollingFrame.Pets
+
+getgenv().savefilename = "Arm-Wrestle-Simulator-"..game.Players.LocalPlayer.Name..".json"
+function sex()
+    -- reads jsonfile
+    local jsonData = readfile(savefilename)
+    local data = HttpService:JSONDecode(jsonData)
+
+    -- global values
+    getgenv().SummerCat = data.SummerCat
+    getgenv().Leviathan = data.Leviathan
+    getgenv().KingOctopus = data.KingOctopus
+    ---// updates the json file
+    function updatejson()
+
+        local xdata = {
+            SummerCat = getgenv().SummerCat,
+            Leviathan = getgenv().Leviathan,
+            KingOctopus = getgenv().KingOctopus
+        }
+
+        local json = HttpService:JSONEncode(xdata)
+        writefile(savefilename, json)
+
+    end
+--------------------------------------------------
+--------------------------------------------------
+-- Uilib Shits
+    local DiscordLib = loadstring(game:HttpGet "https://raw.githubusercontent.com/Forever4D/Lib/main/DiscordLib2.lua")()
+    local win = DiscordLib:Window("Arm Wrestle Simulator - Make by AllaySheen ".." - "..tostring(identifyexecutor()))
+    local serv = win:Server("Arm Wrestle Simulator", "http://www.roblox.com/asset/?id=6031075938")
+    local autosellpet = serv:Channel("Auto Sell Pet Event")
+        autosellpet:Toggle("Summer Cat", getgenv().SummerCat, function(bool)
+            getgenv().SummerCat = bool
+            updatejson()
+        end)
+
+        autosellpet:Toggle("Leviathan", getgenv().Leviathan, function(bool)
+            getgenv().Leviathan = bool
+            updatejson()
+        end)
+
+        autosellpet:Toggle("King Octopus", getgenv().KingOctopus, function(bool)
+            getgenv().KingOctopus = bool
+            updatejson()
+        end)
+
+    local autocraft = serv:Channel("Auto Craft")
+    autocraft:Label("Don't use Auto Start with Infinity Castle! or Thriller Park")
+end
+
+---// Checks if file exist or not\\---
+if isfile(savefilename) then 
+
+    local jsonData = readfile(savefilename)
+    local data = HttpService:JSONDecode(jsonData)
+
+    sex()
+
+else
+    local xdata = {
+        SummerCat = false,
+        Leviathan = false,
+        KingOctopus = false
+    }
+
+    local json = HttpService:JSONEncode(xdata)
+    writefile(savefilename, json)
+
+    sex()
+end
+
+------// Auto Sell Summer Cat \\------
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().getgenv().SummerCat then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Summer Cat" then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end      
+        end
+    end
+end))
+
+------// Auto Sell Leviathan \\------
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().getgenv().Leviathan then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Leviathan" then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end      
+        end
+    end
+end))
+
+------// Auto Sell King Octopus \\------
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().getgenv().KingOctopus then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "King Octopus" then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end      
+        end
+    end
+end))
