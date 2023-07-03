@@ -77,9 +77,10 @@ else
 end
 
 ------// Auto Sell Summer Cat \\------
+coroutine.resume(coroutine.create(function()
     while (Arm > 0) do
         task.wait(1)
-        if getgenv().getgenv().SummerCat then
+        if getgenv().SummerCat then
             for i, v in pairs(FindPet:GetChildren()) do
                 if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
                    PetName = v.Toggle.Stat.Text
@@ -95,16 +96,18 @@ end
             end      
         end
     end
-
+end))
 ------// Auto Sell Leviathan \\------
+coroutine.resume(coroutine.create(function()
     while (Arm > 0) do
         task.wait(1)
-        if getgenv().getgenv().Leviathan then
+        if getgenv().Leviathan then
             for i, v in pairs(FindPet:GetChildren()) do
                 if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
                    PetName = v.Toggle.Stat.Text
                    PetCode = v.Name
                     if PetName == "Leviathan" then
+                    	
                         local args = {
                             [1] = PetCode
                                      }
@@ -115,11 +118,12 @@ end
             end      
         end
     end
-
+end))
 ------// Auto Sell King Octopus \\------
+coroutine.resume(coroutine.create(function()
     while (Arm > 0) do
         task.wait(1)
-        if getgenv().getgenv().KingOctopus then
+        if getgenv().KingOctopus then
             for i, v in pairs(FindPet:GetChildren()) do
                 if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
                    PetName = v.Toggle.Stat.Text
@@ -135,7 +139,7 @@ end
             end      
         end
     end
-
+end))
 --anti afk
 pcall(function()
     local vu = game:GetService("VirtualUser")
