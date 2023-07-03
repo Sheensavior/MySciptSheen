@@ -16,6 +16,7 @@ function sex()
     getgenv().SummerCat = data.SummerCat
     getgenv().Leviathan = data.Leviathan
     getgenv().KingOctopus = data.KingOctopus
+    getgenv().AutoCraft = data.AutoCraft
     ---// updates the json file
     function updatejson()
 
@@ -24,7 +25,8 @@ function sex()
             HatchEvent = getgenv().HatchEvent,
             SummerCat = getgenv().SummerCat,
             Leviathan = getgenv().Leviathan,
-            KingOctopus = getgenv().KingOctopus
+            KingOctopus = getgenv().KingOctopus,
+            AutoCraft = getgenv().AutoCraft
         }
 
         local json = HttpService:JSONEncode(xdata)
@@ -67,7 +69,11 @@ function sex()
         end)
 
     local autocraft = serv:Channel("Auto Craft")
-    autocraft:Label("Lười chưa viết")
+    autocraft:Label("Hello ae")
+    autocraft:Toggle("Auto Craf All Pet ", getgenv().AutoCraft, function(bool)
+        getgenv().AutoCraft = bool
+        updatejson()
+    end)
 end
 
 ---// Checks if file exist or not\\---
@@ -84,7 +90,8 @@ else
         HatchEvent = false,
         SummerCat = false,
         Leviathan = false,
-        KingOctopus = false
+        KingOctopus = false,
+        AutoCraft = false,
     }
 
     local json = HttpService:JSONEncode(xdata)
@@ -229,7 +236,25 @@ coroutine.resume(coroutine.create(function()
     end
 end))
 
+------// Auto Craft Pet \\------
+coroutine.resume(coroutine.create(function()
+    while task.wait(600) do
+        if getgenv().AutoCraft then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetCode1 = v.Name
+                    local args = {
+                        [1] = PetCode1,
+                        [2] = true
+                    }
+                    game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.craft:InvokeServer(unpack(args))
 
+                task.wait(5)
+                end
+            end
+        end
+    end
+end))
 --anti afk
 pcall(function()
     local vu = game:GetService("VirtualUser")
