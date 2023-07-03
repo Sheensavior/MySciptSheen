@@ -1,3 +1,4 @@
+local Arm = 1
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -76,8 +77,8 @@ else
 end
 
 ------// Auto Sell Summer Cat \\------
-coroutine.resume(coroutine.create(function()
-    while task.wait() do
+    while (Arm<1) do
+        task.wait(1)
         if getgenv().getgenv().SummerCat then
             for i, v in pairs(FindPet:GetChildren()) do
                 if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
@@ -94,11 +95,10 @@ coroutine.resume(coroutine.create(function()
             end      
         end
     end
-end))
 
 ------// Auto Sell Leviathan \\------
-coroutine.resume(coroutine.create(function()
-    while task.wait() do
+    while (Arm<1) do
+        task.wait(1)
         if getgenv().getgenv().Leviathan then
             for i, v in pairs(FindPet:GetChildren()) do
                 if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
@@ -115,11 +115,10 @@ coroutine.resume(coroutine.create(function()
             end      
         end
     end
-end))
 
 ------// Auto Sell King Octopus \\------
-coroutine.resume(coroutine.create(function()
-    while task.wait() do
+    while (Arm<1) do
+        task.wait(1)
         if getgenv().getgenv().KingOctopus then
             for i, v in pairs(FindPet:GetChildren()) do
                 if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
@@ -136,4 +135,13 @@ coroutine.resume(coroutine.create(function()
             end      
         end
     end
-end))
+
+--anti afk
+pcall(function()
+    local vu = game:GetService("VirtualUser")
+    game:GetService("Players").LocalPlayer.Idled:connect(function()
+    vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    wait(1)
+    vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    end)
+end)
