@@ -4,7 +4,7 @@ local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local FindPet = game.Players.LocalPlayer.PlayerGui.GameUI.Menus.PetInventory.Container.ScrollingFrame.Pets
 
-getgenv().savefilename = "Arm-Wrestle-Simulator-"..game.Players.LocalPlayer.Name..".json"
+getgenv().savefilename = "UpArm-Wrestle-Simulator-"..game.Players.LocalPlayer.Name..".json"
 function sex()
     -- reads jsonfile
     local jsonData = readfile(savefilename)
