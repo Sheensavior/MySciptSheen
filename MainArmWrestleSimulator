@@ -1,0 +1,127 @@
+local Workspace = game:GetService("Workspace")
+local HttpService = game:GetService("HttpService")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local FindPet = game.Players.LocalPlayer.PlayerGui.GameUI.Menus.PetInventory.Container.ScrollingFrame.Pets
+
+getgenv().savefilename = "UpArm-Wrestle-Simulator-"..game.Players.LocalPlayer.Name..".json"
+function sex()
+    -- reads jsonfile
+    local jsonData = readfile(savefilename)
+    local data = HttpService:JSONDecode(jsonData)
+
+    -- global values
+    getgenv().FightNPC = data.FightNPC
+    getgenv().AutoCraft = data.AutoCraft
+    ---// updates the json file
+    function updatejson()
+
+        local xdata = {
+            FightNPC = getgenv().FightNPC,
+            AutoCraft = getgenv().AutoCraft
+        }
+
+        local json = HttpService:JSONEncode(xdata)
+        writefile(savefilename, json)
+
+    end
+--------------------------------------------------
+--------------------------------------------------
+-- Uilib Shits
+    local DiscordLib = loadstring(game:HttpGet "https://raw.githubusercontent.com/Forever4D/Lib/main/DiscordLib2.lua")()
+    local win = DiscordLib:Window("Arm Wrestle Simulator - Make by AllaySheen ".." - "..tostring(identifyexecutor()))
+    local serv = win:Server("Arm Wrestle Simulator", "http://www.roblox.com/asset/?id=6031075938")
+
+    local autofarmpetevent = serv:Channel("Auto Fight NPC")
+        autofarmpetevent:Toggle("Auto Fight NPC( map 3)", getgenv().FightNPC, function(bool)
+            getgenv().FightNPC = bool
+            updatejson()
+        end)
+        autofarmpetevent:Toggle("Auto Hatching Event Egg", getgenv().HatchEvent, function(bool)
+            getgenv().HatchEvent = bool
+            updatejson()
+        end)
+        
+    local autosellpet = serv:Channel("Auto Sell Pet Event")
+        
+       autosellpet:Label("Tạo Bởi Vĩnh Phát đẹp trai :V ")
+
+    local autocraft = serv:Channel("Auto Craft")
+    autocraft:Label("Hello ae")
+    autocraft:Toggle("Auto Craf All Pet ", getgenv().AutoCraft, function(bool)
+        getgenv().AutoCraft = bool
+        updatejson()
+    end)
+end
+
+---// Checks if file exist or not\\---
+if isfile(savefilename) then 
+
+    local jsonData = readfile(savefilename)
+    local data = HttpService:JSONDecode(jsonData)
+
+    sex()
+
+else
+    local xdata = {
+        FightNPC = false,
+        AutoCraft = false,
+    }
+
+    local json = HttpService:JSONEncode(xdata)
+    writefile(savefilename, json)
+
+    sex()
+end
+------// Auto Fight NPC \\------
+coroutine.resume(coroutine.create(function()
+    while task.wait(1.5) do
+        if getgenv().FightNPC then
+            local args = {
+                [1] = "CocoNut",
+                [2] = workspace.Zones:FindFirstChild("3").Interactables.ArmWrestling.NPC.CocoNut,
+                [3] = "3"
+            }
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
+        end
+    end
+end))
+
+coroutine.resume(coroutine.create(function()
+    while task.wait(0.2) do
+        if getgenv().FightNPC then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+
+------// Auto Craft Pet \\------
+coroutine.resume(coroutine.create(function()
+    while task.wait(600) do
+        if getgenv().AutoCraft then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetCode1 = v.Name
+                    local args = {
+                        [1] = PetCode1,
+                        [2] = true
+                    }
+                    game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.craft:InvokeServer(unpack(args))
+
+                task.wait(5)
+                end
+            end
+        end
+    end
+end))
+--anti afk
+pcall(function()
+    local vu = game:GetService("VirtualUser")
+    game:GetService("Players").LocalPlayer.Idled:connect(function()
+    vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    wait(1)
+    vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    end)
+end)
+
+print("susscess")
