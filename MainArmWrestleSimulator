@@ -37,10 +37,6 @@ function sex()
             getgenv().FightNPC = bool
             updatejson()
         end)
-        autofarmpetevent:Toggle("Auto Hatching Event Egg", getgenv().HatchEvent, function(bool)
-            getgenv().HatchEvent = bool
-            updatejson()
-        end)
         
     local autosellpet = serv:Channel("Auto Sell Pet Event")
         
