@@ -74,8 +74,8 @@ coroutine.resume(coroutine.create(function()
     while task.wait(1.5) do
         if getgenv().FightNPC then
             local args = {
-                [1] = "CocoNut",
-                [2] = workspace.Zones:FindFirstChild("3").Interactables.ArmWrestling.NPC.CocoNut,
+                [1] = "FatPirate",
+                [2] = workspace.Zones:FindFirstChild("3").Interactables.ArmWrestling.NPC.FatPirate,
                 [3] = "3"
             }
             game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
