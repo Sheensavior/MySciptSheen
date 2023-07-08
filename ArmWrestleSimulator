@@ -11,7 +11,8 @@ function sex()
     local data = HttpService:JSONDecode(jsonData)
 
     -- global values
-    getgenv().FarmPetEvent = data.FarmPetEvent
+    getgenv().FarmPetEvent2 = data.FarmPetEvent2
+    getgenv().FarmPetEvent3 = data.FarmPetEvent3
     getgenv().HatchEvent = data.HatchEvent
     getgenv().SummerCat = data.SummerCat
     getgenv().Leviathan = data.Leviathan
@@ -21,7 +22,8 @@ function sex()
     function updatejson()
 
         local xdata = {
-            FarmPetEvent = getgenv().FarmPetEvent,
+            FarmPetEvent2 = getgenv().FarmPetEvent2,
+	    FarmPetEvent3 = getgenv().FarmPetEvent3,
             HatchEvent = getgenv().HatchEvent,
             SummerCat = getgenv().SummerCat,
             Leviathan = getgenv().Leviathan,
@@ -41,8 +43,12 @@ function sex()
     local serv = win:Server("Arm Wrestle Simulator", "http://www.roblox.com/asset/?id=6031075938")
 
     local autofarmpetevent = serv:Channel("Auto Farm Pet Event")
-        autofarmpetevent:Toggle("Auto Farm Pet Event( map 2)", getgenv().FarmPetEvent, function(bool)
-            getgenv().FarmPetEvent = bool
+        autofarmpetevent:Toggle("Auto Farm Pet Event( map 2)", getgenv().FarmPetEvent2, function(bool)
+            getgenv().FarmPetEvent2 = bool
+            updatejson()
+        end)
+	autofarmpetevent:Toggle("Auto Farm Pet Event( map 3)", getgenv().FarmPetEvent3, function(bool)
+            getgenv().FarmPetEvent3 = bool
             updatejson()
         end)
         autofarmpetevent:Toggle("Auto Hatching Event Egg", getgenv().HatchEvent, function(bool)
@@ -53,20 +59,6 @@ function sex()
     local autosellpet = serv:Channel("Auto Sell Pet Event")
         
         autosellpet:Label("Tạo Bởi Vĩnh Phát đẹp trai :V ")
-        autosellpet:Toggle("Sell Summer Cat", getgenv().SummerCat, function(bool)
-            getgenv().SummerCat = bool
-            updatejson()
-        end)
-
-        autosellpet:Toggle("Sell Leviathan", getgenv().Leviathan, function(bool)
-            getgenv().Leviathan = bool
-            updatejson()
-        end)
-
-        autosellpet:Toggle("Sell King Octopus", getgenv().KingOctopus, function(bool)
-            getgenv().KingOctopus = bool
-            updatejson()
-        end)
 
     local autocraft = serv:Channel("Auto Craft")
     autocraft:Label("Hello ae")
@@ -86,7 +78,8 @@ if isfile(savefilename) then
 
 else
     local xdata = {
-        FarmPetEvent = false,
+        FarmPetEvent2 = false,
+	FarmPetEvent3 = false,
         HatchEvent = false,
         SummerCat = false,
         Leviathan = false,
@@ -99,25 +92,41 @@ else
 
     sex()
 end
-------// Auto Farm Pet Event \\------
+------// Auto Farm Pet Event 2 \\------
 coroutine.resume(coroutine.create(function()
     while task.wait(1.5) do
-        if getgenv().FarmPetEvent then
+        if getgenv().FarmPetEvent2 then
             local Xroot = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.Position.X
 			local Yroot = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.Position.Y
 			local Zroot = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.Position.Z
-                if Xroot ~= -10300.76171875 and Yroot ~= 5.203732490539551 and Zroot ~= 534.5423583984375  then
+                if Xroot = -10300.76171875 and Yroot = 5.203732490539551 and Zroot = 534.5423583984375 then
                         local args = {
+                        [1] = "CyberCop",
+                        [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.CyberCop,
+                        [3] = "2"
+                                    }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
+                        
+                elseif Xroot = -10292.8046875 and Yroot = 5.2123332023620605 and Zroot = 542.6561889648438 then
+			local args = {
+			    [1] = "SlicerAssassin",
+			    [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.SlicerAssassin,
+			    [3] = "2"
+			}
+			
+			game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
+		
+		elseif Xroot = -10277.8291015625 and Yroot = 5.251654148101807 and Zroot = 546.201171875 then
+			local args = {
                         [1] = "ScrapTrader",
                         [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.ScrapTrader,
                         [3] = "2"
                                     }
                         game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
-                        
-                elseif Xroot ~= -10292.8046875 and Yroot ~= 5.2123332023620605 and Zroot ~= 542.6561889648438  then
-                        local args = {
-                        [1] = "CyberCop",
-                        [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.CyberCop,
+		else
+			local args = {
+                        [1] = "ScrapTrader",
+                        [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.ScrapTrader,
                         [3] = "2"
                                     }
                         game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
@@ -125,10 +134,25 @@ coroutine.resume(coroutine.create(function()
         end
     end
 end))
+------// Auto Farm Pet Event 3 \\------
+coroutine.resume(coroutine.create(function()
+    while task.wait(1.5) do
+        if getgenv().FarmPetEvent3 then
+		local args = {
+		    [1] = "CocoNut",
+		    [2] = workspace.Zones:FindFirstChild("3").Interactables.ArmWrestling.NPC.CocoNut,
+		    [3] = "3"
+		}
+		
+		game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
+
+	end
+    end
+end))
 
 coroutine.resume(coroutine.create(function()
     while task.wait(0.2) do
-        if getgenv().FarmPetEvent then
+        if getgenv().FarmPetEvent2 or getgenv().FarmPetEvent3 then
             game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
         end    
     end
@@ -138,103 +162,11 @@ end))
 coroutine.resume(coroutine.create(function()
     while task.wait(1) do
         if getgenv().HatchEvent then
-            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.EventService.RF.ClaimEgg:InvokeServer()
+		game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.EventService.RF.ClaimEgg:InvokeServer()
         end
     end
 end))
 
-
-------// Auto Sell Pet Event \\------
-coroutine.resume(coroutine.create(function()
-    while task.wait(1.5) do
-        task.wait(2)
-        if getgenv().SummerCat and not getgenv().Leviathan and not getgenv().KingOctopus then
-            for i, v in pairs(FindPet:GetChildren()) do
-                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
-                   PetName = v.Toggle.Stat.Text
-                   PetCode = v.Name
-                    if PetName == "Summer Cat" then
-                        local args = {
-                            [1] = PetCode
-                                     }
-                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
-                    end 
-                task.wait()
-                end
-            end 
-        elseif getgenv().SummerCat and getgenv().Leviathan and not getgenv().KingOctopus then     
-            for i, v in pairs(FindPet:GetChildren()) do
-                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
-                   PetName = v.Toggle.Stat.Text
-                   PetCode = v.Name
-                    if PetName == "Summer Cat" or PetName == "Leviathan" then
-                        local args = {
-                            [1] = PetCode
-                                     }
-                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
-                    end 
-                task.wait()
-                end
-            end
-        elseif getgenv().SummerCat and not getgenv().Leviathan and getgenv().KingOctopus then
-            for i, v in pairs(FindPet:GetChildren()) do
-                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
-                   PetName = v.Toggle.Stat.Text
-                   PetCode = v.Name
-                    if PetName == "Summer Cat" or PetName == "King Octopus" then
-                        local args = {
-                            [1] = PetCode
-                                     }
-                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
-                    end 
-                task.wait()
-                end
-            end
-        elseif not getgenv().SummerCat and getgenv().Leviathan and not getgenv().KingOctopus then
-            for i, v in pairs(FindPet:GetChildren()) do
-                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
-                   PetName = v.Toggle.Stat.Text
-                   PetCode = v.Name
-                    if PetName == "Leviathan" then
-                        local args = {
-                            [1] = PetCode
-                                     }
-                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
-                    end 
-                task.wait()
-                end
-            end
-        elseif not getgenv().SummerCat and getgenv().Leviathan and getgenv().KingOctopus then
-            for i, v in pairs(FindPet:GetChildren()) do
-                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
-                   PetName = v.Toggle.Stat.Text
-                   PetCode = v.Name
-                    if PetName == "Leviathan" or PetName == "King Octopus"then
-                        local args = {
-                            [1] = PetCode
-                                     }
-                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
-                    end 
-                task.wait()
-                end
-            end
-        elseif not getgenv().SummerCat and not getgenv().Leviathan and getgenv().KingOctopus then
-            for i, v in pairs(FindPet:GetChildren()) do
-                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
-                   PetName = v.Toggle.Stat.Text
-                   PetCode = v.Name
-                    if PetName == "King Octopus"then
-                        local args = {
-                            [1] = PetCode
-                                     }
-                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
-                    end 
-                task.wait()
-                end
-            end
-        end
-    end
-end))
 
 ------// Auto Craft Pet \\------
 coroutine.resume(coroutine.create(function()
