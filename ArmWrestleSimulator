@@ -4,7 +4,7 @@ local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local FindPet = game.Players.LocalPlayer.PlayerGui.GameUI.Menus.PetInventory.Container.ScrollingFrame.Pets
 
-getgenv().savefilename = "UpArm-Wrestle-Simulator-"..game.Players.LocalPlayer.Name..".json"
+getgenv().savefilename = "SArm-Wrestle-Simulator-"..game.Players.LocalPlayer.Name..".json"
 function sex()
     -- reads jsonfile
     local jsonData = readfile(savefilename)
@@ -14,9 +14,6 @@ function sex()
     getgenv().FarmPetEvent2 = data.FarmPetEvent2
     getgenv().FarmPetEvent3 = data.FarmPetEvent3
     getgenv().HatchEvent = data.HatchEvent
-    getgenv().SummerCat = data.SummerCat
-    getgenv().Leviathan = data.Leviathan
-    getgenv().KingOctopus = data.KingOctopus
     getgenv().AutoCraft = data.AutoCraft
     ---// updates the json file
     function updatejson()
@@ -25,9 +22,6 @@ function sex()
             FarmPetEvent2 = getgenv().FarmPetEvent2,
 	    FarmPetEvent3 = getgenv().FarmPetEvent3,
             HatchEvent = getgenv().HatchEvent,
-            SummerCat = getgenv().SummerCat,
-            Leviathan = getgenv().Leviathan,
-            KingOctopus = getgenv().KingOctopus,
             AutoCraft = getgenv().AutoCraft
         }
 
