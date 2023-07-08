@@ -4,7 +4,7 @@ local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local FindPet = game.Players.LocalPlayer.PlayerGui.GameUI.Menus.PetInventory.Container.ScrollingFrame.Pets
 
-getgenv().savefilename = "SArm-Wrestle-Simulator-"..game.Players.LocalPlayer.Name..".json"
+getgenv().savefilename = "UpArm-Wrestle-Simulator-"..game.Players.LocalPlayer.Name..".json"
 function sex()
     -- reads jsonfile
     local jsonData = readfile(savefilename)
@@ -20,7 +20,7 @@ function sex()
 
         local xdata = {
             FarmPetEvent2 = getgenv().FarmPetEvent2,
-	    FarmPetEvent3 = getgenv().FarmPetEvent3,
+	        FarmPetEvent3 = getgenv().FarmPetEvent3,
             HatchEvent = getgenv().HatchEvent,
             AutoCraft = getgenv().AutoCraft
         }
@@ -45,14 +45,14 @@ function sex()
             getgenv().FarmPetEvent3 = bool
             updatejson()
         end)
-        autofarmpetevent:Toggle("Auto Hatching Event Egg", getgenv().HatchEvent, function(bool)
+    autofarmpetevent:Toggle("Auto Hatching Event Egg", getgenv().HatchEvent, function(bool)
             getgenv().HatchEvent = bool
             updatejson()
         end)
         
     local autosellpet = serv:Channel("Auto Sell Pet Event")
         
-        autosellpet:Label("Tạo Bởi Vĩnh Phát đẹp trai :V ")
+       autosellpet:Label("Tạo Bởi Vĩnh Phát đẹp trai :V ")
 
     local autocraft = serv:Channel("Auto Craft")
     autocraft:Label("Hello ae")
@@ -73,7 +73,7 @@ if isfile(savefilename) then
 else
     local xdata = {
         FarmPetEvent2 = false,
-	FarmPetEvent3 = false,
+	    FarmPetEvent3 = false,
         HatchEvent = false,
         AutoCraft = false,
     }
@@ -83,6 +83,7 @@ else
 
     sex()
 end
+
 ------// Auto Farm Pet Event 2 \\------
 coroutine.resume(coroutine.create(function()
     while task.wait(1.5) do
@@ -90,7 +91,7 @@ coroutine.resume(coroutine.create(function()
             local Xroot = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.Position.X
 			local Yroot = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.Position.Y
 			local Zroot = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.Position.Z
-                if Xroot = -10300.76171875 and Yroot = 5.203732490539551 and Zroot = 534.5423583984375 then
+                if Yroot == 5.23330545425415 or Yroot == 5.203732490539551 then
                         local args = {
                         [1] = "CyberCop",
                         [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.CyberCop,
@@ -98,29 +99,22 @@ coroutine.resume(coroutine.create(function()
                                     }
                         game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
                         
-                elseif Xroot = -10292.8046875 and Yroot = 5.2123332023620605 and Zroot = 542.6561889648438 then
-			local args = {
-			    [1] = "SlicerAssassin",
-			    [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.SlicerAssassin,
-			    [3] = "2"
-			}
-			
-			game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
+                elseif Yroot == 5.233249664306641  or Yroot == 5.2123332023620605 or Yroot == 5.233253002166748 then
+                        local args = {
+                            [1] = "SlicerAssassin",
+                            [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.SlicerAssassin,
+                            [3] = "2"
+                        }
+                        
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
 		
-		elseif Xroot = -10277.8291015625 and Yroot = 5.251654148101807 and Zroot = 546.201171875 then
-			local args = {
-                        [1] = "ScrapTrader",
-                        [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.ScrapTrader,
-                        [3] = "2"
-                                    }
-                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
-		else
-			local args = {
-                        [1] = "ScrapTrader",
-                        [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.ScrapTrader,
-                        [3] = "2"
-                                    }
-                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
+		        else
+                        local args = {
+                                    [1] = "ScrapTrader",
+                                    [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.ScrapTrader,
+                                    [3] = "2"
+                                                }
+                                    game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
                 end
         end
     end
@@ -129,15 +123,15 @@ end))
 coroutine.resume(coroutine.create(function()
     while task.wait(1.5) do
         if getgenv().FarmPetEvent3 then
-		local args = {
-		    [1] = "CocoNut",
-		    [2] = workspace.Zones:FindFirstChild("3").Interactables.ArmWrestling.NPC.CocoNut,
-		    [3] = "3"
-		}
-		
-		game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
+            local args = {
+                [1] = "CocoNut",
+                [2] = workspace.Zones:FindFirstChild("3").Interactables.ArmWrestling.NPC.CocoNut,
+                [3] = "3"
+            }
+            
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
 
-	end
+	    end
     end
 end))
 
@@ -157,7 +151,6 @@ coroutine.resume(coroutine.create(function()
         end
     end
 end))
-
 
 ------// Auto Craft Pet \\------
 coroutine.resume(coroutine.create(function()
