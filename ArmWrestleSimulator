@@ -75,9 +75,6 @@ else
         FarmPetEvent2 = false,
 	FarmPetEvent3 = false,
         HatchEvent = false,
-        SummerCat = false,
-        Leviathan = false,
-        KingOctopus = false,
         AutoCraft = false,
     }
 
