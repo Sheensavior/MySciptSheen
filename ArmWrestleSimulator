@@ -138,7 +138,7 @@ coroutine.resume(coroutine.create(function()
 end))
 
 coroutine.resume(coroutine.create(function()
-    while task.wait(0.2) do
+    while task.wait() do
         if getgenv().FarmPetEvent2 or getgenv().FarmPetEvent3 then
             game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
         end    
