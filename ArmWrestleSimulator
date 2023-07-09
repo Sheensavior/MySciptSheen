@@ -240,7 +240,7 @@ coroutine.resume(coroutine.create(function()
                 if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
                    PetName = v.Toggle.Stat.Text
                    PetCode = v.Name
-                    if PetName == "Ninja Parrot" or PetName == "Ninja Yeti"then
+                    if PetName == "Ninja Parrot" or PetName == "Ninja Yeti" then
                         local args = {
                             [1] = PetCode
                                      }
@@ -255,6 +255,20 @@ coroutine.resume(coroutine.create(function()
                    PetName = v.Toggle.Stat.Text
                    PetCode = v.Name
                     if PetName == "Ninja Yeti"then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end
+	elseif getgenv().Panda and getgenv().Parrot and getgenv().Yeti then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Ninja Panda" or PetName == "Ninja Parrot" or or PetName == "Ninja Yeti" then
                         local args = {
                             [1] = PetCode
                                      }
