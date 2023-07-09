@@ -268,7 +268,7 @@ coroutine.resume(coroutine.create(function()
                 if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
                    PetName = v.Toggle.Stat.Text
                    PetCode = v.Name
-                    if PetName == "Ninja Panda" or PetName == "Ninja Parrot" or or PetName == "Ninja Yeti" then
+                    if PetName == "Ninja Panda" or PetName == "Ninja Parrot" or PetName == "Ninja Yeti" then
                         local args = {
                             [1] = PetCode
                                      }
