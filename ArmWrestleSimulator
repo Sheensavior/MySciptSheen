@@ -2,7 +2,6 @@ local Workspace = game:GetService("Workspace")
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
-local FindPet = game.Players.LocalPlayer.PlayerGui.GameUI.Menus.PetInventory.Container.ScrollingFrame.Pets
 
 getgenv().savefilename = "UpArm-Wrestle-Simulator-"..game.Players.LocalPlayer.Name..".json"
 function sex()
@@ -14,14 +13,20 @@ function sex()
     getgenv().FarmPetEvent2 = data.FarmPetEvent2
     getgenv().FarmPetEvent3 = data.FarmPetEvent3
     getgenv().HatchEvent = data.HatchEvent
+    getgenv().Panda = data.Panda
+    getgenv().Parrot = data.Parrot
+    getgenv().Yeti = data.Yeti
     getgenv().AutoCraft = data.AutoCraft
     ---// updates the json file
     function updatejson()
 
         local xdata = {
             FarmPetEvent2 = getgenv().FarmPetEvent2,
-	        FarmPetEvent3 = getgenv().FarmPetEvent3,
+	    FarmPetEvent3 = getgenv().FarmPetEvent3,
             HatchEvent = getgenv().HatchEvent,
+	    Panda = getgenv().Panda,
+	    Parrot = getgenv().Parrot,
+	    Yeti = getgenv().Yeti,
             AutoCraft = getgenv().AutoCraft
         }
 
@@ -51,8 +56,22 @@ function sex()
         end)
         
     local autosellpet = serv:Channel("Auto Sell Pet Event")
-        
+      
        autosellpet:Label("Tạo Bởi Vĩnh Phát đẹp trai :V ")
+       autosellpet:Toggle("Sell Ninja Panda", getgenv().Panda, function(bool)
+            getgenv().Panda = bool
+            updatejson()
+        end)
+
+        autosellpet:Toggle("Sell Ninja Parrot", getgenv().Parrot, function(bool)
+            getgenv().Parrot = bool
+            updatejson()
+        end)
+
+        autosellpet:Toggle("Sell Ninja Yeti", getgenv().Yeti, function(bool)
+            getgenv().Yeti = bool
+            updatejson()
+        end)
 
     local autocraft = serv:Channel("Auto Craft")
     autocraft:Label("Hello ae")
@@ -73,8 +92,11 @@ if isfile(savefilename) then
 else
     local xdata = {
         FarmPetEvent2 = false,
-	    FarmPetEvent3 = false,
+	FarmPetEvent3 = false,
         HatchEvent = false,
+	Panda = false,
+        Parrot = false,
+	Yeti = false,
         AutoCraft = false,
     }
 
@@ -148,6 +170,99 @@ coroutine.resume(coroutine.create(function()
     while task.wait(1) do
         if getgenv().HatchEvent then
 		game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.EventService.RF.ClaimEgg:InvokeServer()
+        end
+    end
+end))
+
+------// Auto Sell Pet Event \\------
+coroutine.resume(coroutine.create(function()
+    while task.wait(1.5) do
+        task.wait(2)
+	local FindPet = game.Players.LocalPlayer.PlayerGui.GameUI.Menus.PetInventory.Container.ScrollingFrame.Pets
+        if getgenv().Panda and not getgenv().Parrot and not getgenv().Yeti then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Ninja Panda" then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end 
+        elseif getgenv().Panda and getgenv().Parrot and not getgenv().Yeti then     
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Ninja Panda" or PetName == "Ninja Parrot" then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end
+        elseif getgenv().Panda and not getgenv().Parrot and getgenv().Yeti then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Ninja Panda" or PetName == "Ninja Yeti" then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end
+        elseif not getgenv().Panda and getgenv().Parrot and not getgenv().Yeti then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Ninja Parrot" then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end
+        elseif not getgenv().Panda and getgenv().Parrot and getgenv().Yeti then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Ninja Parrot" or PetName == "Ninja Yeti"then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end
+        elseif not getgenv().Panda and not getgenv().Parrot and getgenv().Yeti then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Ninja Yeti"then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end
         end
     end
 end))
