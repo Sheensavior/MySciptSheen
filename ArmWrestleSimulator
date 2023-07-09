@@ -108,7 +108,7 @@ end
 
 ------// Auto Farm Pet Event 2 \\------
 coroutine.resume(coroutine.create(function()
-    while task.wait(1.5) do
+    while task.wait(0.3) do
         if getgenv().FarmPetEvent2 then
 		local args = {
 		    [1] = "RipperDoc",
@@ -123,7 +123,7 @@ coroutine.resume(coroutine.create(function()
 end))
 ------// Auto Farm Pet Event 3 \\------
 coroutine.resume(coroutine.create(function()
-    while task.wait(1.5) do
+    while task.wait(0.3) do
         if getgenv().FarmPetEvent3 then
             local args = {
                 [1] = "CocoNut",
