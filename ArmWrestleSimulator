@@ -110,34 +110,14 @@ end
 coroutine.resume(coroutine.create(function()
     while task.wait(1.5) do
         if getgenv().FarmPetEvent2 then
-            local Xroot = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.Position.X
-			local Yroot = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.Position.Y
-			local Zroot = game.Workspace[game.Players.LocalPlayer.Name].HumanoidRootPart.Position.Z
-                if Yroot == 5.23330545425415 or Yroot == 5.203732490539551 then
-                        local args = {
-                        [1] = "CyberCop",
-                        [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.CyberCop,
-                        [3] = "2"
-                                    }
-                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
-                        
-                elseif Yroot == 5.233249664306641  or Yroot == 5.2123332023620605 or Yroot == 5.233253002166748 then
-                        local args = {
-                            [1] = "SlicerAssassin",
-                            [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.SlicerAssassin,
-                            [3] = "2"
-                        }
-                        
-                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
+		local args = {
+		    [1] = "RipperDoc",
+		    [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.RipperDoc,
+		    [3] = "2"
+		}
 		
-		        else
-                        local args = {
-                                    [1] = "ScrapTrader",
-                                    [2] = workspace.Zones:FindFirstChild("2").Interactables.ArmWrestling.NPC.ScrapTrader,
-                                    [3] = "2"
-                                                }
-                                    game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
-                end
+		game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onEnterNPCTable:FireServer(unpack(args))
+
         end
     end
 end))
