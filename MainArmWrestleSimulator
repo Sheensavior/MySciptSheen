@@ -12,13 +12,15 @@ function sex()
 
     -- global values
     getgenv().FightNPC = data.FightNPC
+    getgenv().SuperClick = data.SuperClick
     getgenv().AutoCraft = data.AutoCraft
     ---// updates the json file
     function updatejson()
 
         local xdata = {
             FightNPC = getgenv().FightNPC,
-            AutoCraft = getgenv().AutoCraft
+            AutoCraft = getgenv().AutoCraft,
+            SuperClick = getgenv().SuperClick
         }
 
         local json = HttpService:JSONEncode(xdata)
@@ -35,6 +37,10 @@ function sex()
     local autofarmpetevent = serv:Channel("Auto Fight NPC")
         autofarmpetevent:Toggle("Auto Fight NPC( map 3)", getgenv().FightNPC, function(bool)
             getgenv().FightNPC = bool
+            updatejson()
+        end)
+        autofarmpetevent:Toggle("Super Click", getgenv().SuperClick, function(bool)
+            getgenv().SuperClick = bool
             updatejson()
         end)
         
@@ -62,6 +68,7 @@ else
     local xdata = {
         FightNPC = false,
         AutoCraft = false,
+        SuperClick = false
     }
 
     local json = HttpService:JSONEncode(xdata)
@@ -90,6 +97,29 @@ coroutine.resume(coroutine.create(function()
         end    
     end
 end))
+
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+
 
 ------// Auto Craft Pet \\------
 coroutine.resume(coroutine.create(function()
