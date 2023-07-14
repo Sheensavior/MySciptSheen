@@ -119,6 +119,111 @@ coroutine.resume(coroutine.create(function()
         end    
     end
 end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
 
 
 ------// Auto Craft Pet \\------
