@@ -17,6 +17,7 @@ function sex()
     getgenv().Parrot = data.Parrot
     getgenv().Yeti = data.Yeti
     getgenv().AutoCraft = data.AutoCraft
+    getgenv().SuperClick = data.SuperClick
     ---// updates the json file
     function updatejson()
 
@@ -27,7 +28,8 @@ function sex()
 	    Panda = getgenv().Panda,
 	    Parrot = getgenv().Parrot,
 	    Yeti = getgenv().Yeti,
-            AutoCraft = getgenv().AutoCraft
+            AutoCraft = getgenv().AutoCraft,
+            SuperClick = getgenv().SuperClick
         }
 
         local json = HttpService:JSONEncode(xdata)
@@ -52,6 +54,10 @@ function sex()
         end)
     autofarmpetevent:Toggle("Auto Hatching Event Egg", getgenv().HatchEvent, function(bool)
             getgenv().HatchEvent = bool
+            updatejson()
+        end)
+    autofarmpetevent:Toggle("Super Click", getgenv().SuperClick, function(bool)
+            getgenv().SuperClick = bool
             updatejson()
         end)
         
@@ -98,6 +104,7 @@ else
         Parrot = false,
 	Yeti = false,
         AutoCraft = false,
+        SuperClick = false
     }
 
     local json = HttpService:JSONEncode(xdata)
@@ -278,6 +285,27 @@ coroutine.resume(coroutine.create(function()
                 end
             end
         end
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
+    end
+end))
+coroutine.resume(coroutine.create(function()
+    while task.wait() do
+        if getgenv().SuperClick then
+            game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.ArmWrestleService.RE.onClickRequest:FireServer()
+        end    
     end
 end))
 --anti afk
