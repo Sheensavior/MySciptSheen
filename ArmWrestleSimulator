@@ -171,7 +171,7 @@ end))
 
 ------// Auto Sell Pet Event \\------
 coroutine.resume(coroutine.create(function()
-    while task.wait() do
+    while task.wait(2) do
 	local FindPet = game.Players.LocalPlayer.PlayerGui.GameUI.Menus.PetInventory.Container.ScrollingFrame.Pets
         if getgenv().Cat then
             for i, v in pairs(FindPet:GetChildren()) do
@@ -191,7 +191,7 @@ coroutine.resume(coroutine.create(function()
     end
 end))
 coroutine.resume(coroutine.create(function()
-    while task.wait() do
+    while task.wait(5) do
 	local FindPet = game.Players.LocalPlayer.PlayerGui.GameUI.Menus.PetInventory.Container.ScrollingFrame.Pets
         if getgenv().Fish then
             for i, v in pairs(FindPet:GetChildren()) do
@@ -211,7 +211,7 @@ coroutine.resume(coroutine.create(function()
     end
 end))
 coroutine.resume(coroutine.create(function()
-    while task.wait() do
+    while task.wait(9) do
 	local FindPet = game.Players.LocalPlayer.PlayerGui.GameUI.Menus.PetInventory.Container.ScrollingFrame.Pets
         if getgenv().Croc then
             for i, v in pairs(FindPet:GetChildren()) do
