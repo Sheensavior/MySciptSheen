@@ -171,9 +171,10 @@ end))
 
 ------// Auto Sell Pet Event \\------
 coroutine.resume(coroutine.create(function()
-    while task.wait(2) do
+    while task.wait(1.5) do
+        task.wait(2)
 	local FindPet = game.Players.LocalPlayer.PlayerGui.GameUI.Menus.PetInventory.Container.ScrollingFrame.Pets
-        if getgenv().Cat then
+        if getgenv().Cat and not getgenv().Fish and not getgenv().Croc then
             for i, v in pairs(FindPet:GetChildren()) do
                 if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
                    PetName = v.Toggle.Stat.Text
@@ -187,13 +188,35 @@ coroutine.resume(coroutine.create(function()
                 task.wait()
                 end
             end 
-        end
-    end
-end))
-coroutine.resume(coroutine.create(function()
-    while task.wait(5) do
-	local FindPet = game.Players.LocalPlayer.PlayerGui.GameUI.Menus.PetInventory.Container.ScrollingFrame.Pets
-        if getgenv().Fish then
+        elseif getgenv().Cat and getgenv().Fish and not getgenv().Croc then     
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Holo Cat" or PetName == "Holo Jellyfish" then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end
+        elseif getgenv().Cat and not getgenv().Fish and getgenv().Croc then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Holo Cat" or PetName == "Holo Croc" then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end
+        elseif not getgenv().Cat and getgenv().Fish and not getgenv().Croc then
             for i, v in pairs(FindPet:GetChildren()) do
                 if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
                    PetName = v.Toggle.Stat.Text
@@ -204,29 +227,51 @@ coroutine.resume(coroutine.create(function()
                                      }
                         game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
                     end 
-                			task.wait()
+                task.wait()
                 end
-            end 
-        end
-    end
-end))
-coroutine.resume(coroutine.create(function()
-    while task.wait(9) do
-	local FindPet = game.Players.LocalPlayer.PlayerGui.GameUI.Menus.PetInventory.Container.ScrollingFrame.Pets
-        if getgenv().Croc then
+            end
+        elseif not getgenv().Cat and getgenv().Fish and getgenv().Croc then
             for i, v in pairs(FindPet:GetChildren()) do
                 if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
                    PetName = v.Toggle.Stat.Text
                    PetCode = v.Name
-                    if PetName == "Holo Croc" then
+                    if PetName == "Holo Jellyfish" or PetName == "Holo Croc" then
                         local args = {
                             [1] = PetCode
                                      }
                         game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
                     end 
-                			task.wait()
+                task.wait()
                 end
-            end 
+            end
+        elseif not getgenv().Cat and not getgenv().Fish and getgenv().Croc then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Holo Croc"then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end
+	elseif getgenv().Cat and getgenv().Fish and getgenv().Croc then
+            for i, v in pairs(FindPet:GetChildren()) do
+                if not v:IsA("UIGridLayout") and not v:IsA("UIPadding") then
+                   PetName = v.Toggle.Stat.Text
+                   PetCode = v.Name
+                    if PetName == "Holo Cat" or PetName == "Holo Jellyfish" or PetName == "Holo Croc" then
+                        local args = {
+                            [1] = PetCode
+                                     }
+                        game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.4.7").knit.Services.PetService.RF.delete:InvokeServer(unpack(args))
+                    end 
+                task.wait()
+                end
+            end
         end
     end
 end))
