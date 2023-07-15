@@ -18,7 +18,7 @@ function sex()
     getgenv().Yeti = data.Yeti
     getgenv().AutoCraft = data.AutoCraft
     getgenv().SuperClick = data.SuperClick
-    gengenv().SuperKnuckle = data.SuperKnuckle
+    getgenv().SuperKnuckle = data.SuperKnuckle
     ---// updates the json file
     function updatejson()
 
@@ -31,7 +31,7 @@ function sex()
 	    Yeti = getgenv().Yeti,
             AutoCraft = getgenv().AutoCraft,
             SuperClick = getgenv().SuperClick,
-	    SuperKnuckle = gengenv().SuperKnuckle
+	    SuperKnuckle = getgenv().SuperKnuckle
         }
 
         local json = HttpService:JSONEncode(xdata)
@@ -62,7 +62,7 @@ function sex()
             getgenv().SuperClick = bool
             updatejson()
         end)
-    autofarmpetevent:Toggle("Super Knuckle", gengenv().SuperKnuckle, function(bool)
+    autofarmpetevent:Toggle("Super Knuckle", getgenv().SuperKnuckle, function(bool)
             getgenv().SuperKnuckle = bool
             updatejson()
         end)
