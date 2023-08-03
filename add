@@ -1,0 +1,1 @@
+Add-AppPackage -path "C:\roblox\roblox1\AppxManifest.xml" -register
