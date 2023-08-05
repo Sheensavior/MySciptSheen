@@ -2,4 +2,5 @@ https://www.7-zip.org/
 https://aka.ms/vs/17/release/vc_redist.x86.exe
 https://aka.ms/vs/17/release/vc_redist.x64.exe
 https://www.win-rar.com/postdownload.html?&L=0
+developers setting
 Add-AppPackage -path "C:\roblox\roblox1\AppxManifest.xml" -register
